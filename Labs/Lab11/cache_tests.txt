@@ -1,0 +1,48 @@
+
+                                                     Cache
+       Tag     Index    Byte Offset    Miss?   Property Checked  
+# ----------------------------------------------------------
+Testing Cold Caches
+1	0000    00       00             1      		1	# Results in ROM read; Sets valid bit to 1, stores input tag, stores input data, Miss due to empty cache, tag matches but valid bit is 0, so it doesn't hit
+2	0101    01       00             1      		1	# Results in ROM read; Sets valid bit to 1, stores input tag, stores input data, Miss due to empty cache
+3	1101    10       00             1      		1	# Results in ROM read; Sets valid bit to 1, stores input tag, stores input data, Miss due to empty cache
+4	0001    11       00             1      		1	# Results in ROM read; Sets valid bit to 1, stores input tag, stores input data, Miss due to empty cache
+
+	Testing Cache Hits
+5	0000    00       01             0      		2	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored even though it doesn't match the first byte offset sent to the cache
+6	0101    01       10             0      		2	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored even though it doesn't match the first byte offset sent to the cache
+7	1101    10       11             0      		2	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored even though it doesn't match the first byte offset sent to the cache
+8	0001    11       00             0      		2	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+
+	Testing Accesses to Cache Do Not Overwrite Other Indices
+9	1100    10       10             1      		-	# Results in ROM read, Valid bit unchanged, stores input tag, stores input data, Miss due to tag mismatch
+10	0000    00       00             0      		4	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored 
+11	0101    01       00             0      		4	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored 
+12	1101    10       00             1      		4	# Results in ROM read, Valid bit unchanged, stores input tag, stores input data, Miss due to tag mismatch
+13	0001    11       00             0      		4	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+14	1101    10       00             0               4       # No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+
+	Bytes in the Same Cache are Cached Together
+15	0000    00       00             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored 
+16	0000    00       01             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored 
+17	0000    00       10             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored 
+18	0000    00       11             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+
+19	0101    01       00             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+20	0101    01       01             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+21	0101    01       10             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+22	0101    01       11             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+
+23	1101    10       00             0               3       # No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+24	1101    10       01             0               3       # No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+25	1101    10       10             0               3       # No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+26	1101    10       11             0               3       # No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+
+27	0001    11       00             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+28	0001    11       01             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+29	0001    11       10             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+30	0001    11       11             0      		3	# No ROM read, Cache data unchanged and returned, Hit because accessed byte was already stored
+
+
+
+

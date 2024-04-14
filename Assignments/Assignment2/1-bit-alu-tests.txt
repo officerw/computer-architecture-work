@@ -1,0 +1,44 @@
+# All text on a line after "#" is a comment
+# Blank lines and additional spaces are ignored
+# Numbers in [brackets] after an input/output name indicate how many bits the "pin" has
+# A test value set to "x" is a don't care, but if you set an _input_ to don't care then Logisim will make sure you get the expected output for *all possible values of the input*.
+
+a b a_invert b_invert c_in operation[2] c_out result
+# Test AND mode
+0 0 0        0        x    00          x     0
+0 1 0        0        x    00          x     0
+1 0 0        0        x    00          x     0
+1 1 0        0        x    00          x     1
+
+# Test NOR mode
+0 0 1        1        x    00          x     1
+0 1 1        1        x    00          x     0
+1 0 1        1        x    00          x     0
+1 1 1        1        x    00          x     0
+
+# Test OR mode
+0 0 0        0        x    01          x     0
+0 1 0        0        x    01          x     1
+1 0 0        0        x    01          x     1
+1 1 0        0        x    01          x     1
+
+# Test NAND mode
+# Fill these in if you'd like
+0 0 1        1        x    01          x     1
+0 1 1        1        x    01          x     1
+1 0 1        1        x    01          x     1
+1 1 1        1        x    01          x     0
+
+# Test addition
+# Fill these in if you'd like
+0 0 0        0        0    10          0     0
+0 1 0        0        0    10          0     1
+1 0 0        0        0    10          0     1
+1 1 0        0        0    10          1     0
+
+# Test subtraction
+# Fill these in if you'd like
+0 0 0        1        1    10          1     0
+0 1 0        1        1    10          0     1
+1 0 0        1        1    10          1     1
+1 1 0        1        1    10          1     0

@@ -1,0 +1,9 @@
+# All text on a line after "#" is a comment
+# Blank lines and additional spaces are ignored
+
+x1 x2 co s
+0  0  0  0
+0  1  0  1
+1  0  0  1
+1  1  1  0
+# Add additional rows here
